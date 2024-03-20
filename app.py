@@ -7,7 +7,8 @@ from langchain_nvidia_ai_endpoints import ChatNVIDIA, NVIDIAEmbeddings
 
 # st.set_page_config(layout = "wide")
 
-st.subheader("Chat with your AI Assistant!")
+st.title("Hi! I am Photosmyth.")
+st.subheader("I can generate pictures for you.")
 
 def setup_chat():
     if "messages" not in st.session_state:
