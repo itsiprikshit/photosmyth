@@ -1,0 +1,4 @@
+.photoai
+uploaded_docs/
+*.pkl
+.DS_Store
