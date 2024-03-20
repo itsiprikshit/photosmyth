@@ -4,7 +4,6 @@ from io import BytesIO
 import json
 
 from langchain_nvidia_ai_endpoints import ChatNVIDIA, NVIDIAEmbeddings
-from langchain_core.output_parsers import StrOutputParser
 
 st.set_page_config(layout = "wide")
 
@@ -22,10 +21,22 @@ def setup_chat():
                 st.markdown(message["content"]["query"])
                 st.image(message["content"]["img"], width=300)
 
+def create_payload(d):
+    if d:
+        d = {"prompt": d.get("messages", [{}])[0].get("content")}
+
+    return d
+
+def to_pil_img(d):
+    img = d.response_metadata['b64_json']
+    return BytesIO(base64.b64decode(img))
+
 def initialize():
     llm = ChatNVIDIA(model="sdxl")
 
-    chain = llm | StrOutputParser()
+    llm.client.payload_fn = create_payload
+
+    chain = llm | to_pil_img
 
     return chain
 
@@ -44,13 +55,10 @@ def main():
             message_placeholder = st.empty()
             message_placeholder.markdown(user_input)
 
-            res = chain.invoke(user_input)
-            res = res.replace("'", '"')
-            res = json.loads(res)
-            img = res['b64_json']
-            st.image(BytesIO(base64.b64decode(img)), width=300)
+            img = chain.invoke(user_input)
+            st.image(img, width=300)
 
-        st.session_state.messages.append({"role": "assistant", "content": {"query": user_input, "img": BytesIO(base64.b64decode(img))}})
+        st.session_state.messages.append({"role": "assistant", "content": {"query": user_input, "img": img}})
 
 if __name__ == "__main__":
     setup_chat()
