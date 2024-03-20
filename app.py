@@ -5,7 +5,7 @@ import json
 
 from langchain_nvidia_ai_endpoints import ChatNVIDIA, NVIDIAEmbeddings
 
-st.set_page_config(layout = "wide")
+# st.set_page_config(layout = "wide")
 
 st.subheader("Chat with your AI Assistant!")
 
