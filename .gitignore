@@ -1,4 +1,4 @@
-.photosmyth
-uploaded_docs/
+venv
+uploaded/
 *.pkl
 .DS_Store

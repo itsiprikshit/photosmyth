@@ -1,3 +1,5 @@
 streamlit
 langchain-nvidia-ai-endpoints
-langchain
+faiss-cpu==1.7.4
+langchain==0.0.352
+unstructured[all-docs]
