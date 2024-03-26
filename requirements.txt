@@ -1,5 +1,3 @@
-streamlit
-langchain-nvidia-ai-endpoints
-faiss-cpu==1.7.4
-langchain==0.0.352
-unstructured[all-docs]
+streamlit==1.32.2
+langchain-nvidia-ai-endpoints==0.0.4
+langchain==0.1.13
