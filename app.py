@@ -55,6 +55,16 @@ def get_stream(message):
 
     return stream
 
+def insert_styles():
+    st.markdown("""
+        <style>
+            img {
+                border-radius: 10px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+        </style>
+    """, unsafe_allow_html=True)
+
 def main():
     user_input = st.chat_input("Generate an image of a cat with a ball.")
 
@@ -78,4 +88,5 @@ def main():
 
 if __name__ == "__main__":
     setup_chat()
+    insert_styles()
     main()
