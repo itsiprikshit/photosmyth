@@ -1,5 +1,9 @@
 # Photosmyth
 
+Hi! I am Photosmyth.
+
+I can synthesize photos for you ;)
+
 ## Getting started
 
 Step 1: Create a virtual environment
