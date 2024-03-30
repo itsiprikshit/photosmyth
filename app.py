@@ -27,19 +27,19 @@ def setup_chat():
                 st.markdown(f'You request is processed! {message["content"]["query"]}')
                 st.image(message["content"]["img"], width=300)
 
-def create_payload(d):
+def create_payload(data):
     payload = {'text_prompts': []}
 
-    if 'messages' in d:
-        for message in d['messages']:
+    if 'messages' in data:
+        for message in data['messages']:
             p = {'text': message['content']}
             payload['text_prompts'].append(p)
 
     return payload
 
-def base64_to_img(d):
+def base64_to_img(data):
     # The role of the response is assistant
-    artifacts = d.response_metadata['artifacts']
+    artifacts = data.response_metadata['artifacts']
     img = artifacts[0]['base64']
     return BytesIO(base64.b64decode(img))
 
