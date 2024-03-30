@@ -3,7 +3,7 @@ import base64
 from io import BytesIO
 import time
 
-from langchain_nvidia_ai_endpoints import ChatNVIDIA, NVIDIAEmbeddings
+from langchain_nvidia_ai_endpoints import ChatNVIDIA
 
 # st.set_page_config(layout = "wide")
 
@@ -28,12 +28,16 @@ def setup_chat():
                 st.image(message["content"]["img"], width=300)
 
 def create_payload(d):
-    if d:
-        d = {'text_prompts': [{'text': d.get("messages", [{}])[0].get("content")}]}
+    payload = {'text_prompts': []}
 
-    return d
+    if 'messages' in d:
+        for message in d['messages']:
+            p = {'text': message['content']}
+            payload['text_prompts'].append(p)
 
-def to_pil_img(d):
+    return payload
+
+def base64_to_img(d):
     # The role of the response is assistant
     artifacts = d.response_metadata['artifacts']
     img = artifacts[0]['base64']
@@ -44,7 +48,7 @@ def initialize():
 
     llm.client.payload_fn = create_payload
 
-    chain = llm | to_pil_img
+    chain = llm | base64_to_img
 
     return chain
 
