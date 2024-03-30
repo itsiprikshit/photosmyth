@@ -29,16 +29,18 @@ def setup_chat():
 
 def create_payload(d):
     if d:
-        d = {"prompt": d.get("messages", [{}])[0].get("content")}
+        d = {'text_prompts': [{'text': d.get("messages", [{}])[0].get("content")}]}
 
     return d
 
 def to_pil_img(d):
-    img = d.response_metadata['b64_json']
+    # The role of the response is assistant
+    artifacts = d.response_metadata['artifacts']
+    img = artifacts[0]['base64']
     return BytesIO(base64.b64decode(img))
 
 def initialize():
-    llm = ChatNVIDIA(model="sdxl")
+    llm = ChatNVIDIA(model="ai-sdxl-turbo")
 
     llm.client.payload_fn = create_payload
 
