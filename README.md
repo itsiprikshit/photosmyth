@@ -4,6 +4,9 @@ Hi! I am Photosmyth.
 
 I can synthesize photos for you ;)
 
+## Photosmyth in action
+![](./assests/video.gif)
+
 ## Getting started
 
 Step 1: Create a virtual environment
