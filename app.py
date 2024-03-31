@@ -7,6 +7,7 @@ from langchain_nvidia_ai_endpoints import ChatNVIDIA
 
 # st.set_page_config(layout = "wide")
 
+st.set_page_config(page_title='Photosmyth')
 st.title("Hi! I am Photosmyth.")
 st.subheader("I can synthesize photos for you ;)")
 st.text("\n")
