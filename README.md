@@ -1,10 +1,10 @@
 # Photosmyth
 
-Hi! I am Photosmyth.
+[**Photosmyth**](https://prikshit.dev/projects/photosmyth/) is a generative AI application built using streamlit that generates images.
+To build this application, I used [`sdxl-turbo`](https://build.nvidia.com/stabilityai/sdxl-turbo), a fast text-to-image model provided by [NVidia AI Foundation Models and Endpoints](https://www.nvidia.com/en-us/ai-data-science/foundation-models/). It is hosted on [NVidia API Catalog](https://build.nvidia.com/explore/discover) which provides easy access to the model APIs.
 
-I can synthesize photos for you ;)
+You can read more about photosmyth and the development process [here](https://prikshit.dev/blog/photosmyth).
 
-## Photosmyth in action
 ![](./assests/video.gif)
 
 ## Getting started
