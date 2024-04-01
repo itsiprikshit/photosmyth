@@ -82,8 +82,6 @@ def main():
     chain = initialize()
 
     if user_input:
-        st.session_state.messages.append({"role": "user", "content": user_input})
-
         with st.chat_message("user"):
             st.markdown(user_input)
 
@@ -91,10 +89,18 @@ def main():
             message_placeholder = st.empty()
             message_placeholder.write_stream(get_stream(f"Processing your request... {user_input}"))
 
-            img = chain.invoke(user_input)
+            context = ''
+            for i in range(len(st.session_state.messages)):
+                message = st.session_state.messages[i]
+                if message['role'] == 'user':
+                    context += message['content']
+                    context += '\n\n'
+
+            img = chain.invoke(context + user_input)
             message_placeholder.markdown(f"You request is processed! {user_input}")
             st.image(img, width=300)
 
+        st.session_state.messages.append({"role": "user", "content": user_input})
         st.session_state.messages.append({"role": "assistant", "content": {"query": user_input, "img": img}})
 
 if __name__ == "__main__":
